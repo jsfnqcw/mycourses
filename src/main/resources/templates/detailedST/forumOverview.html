@@ -23,6 +23,15 @@
             background: #CFF;
             text-decoration: underline;
         }
+        #forumBody{
+            text-align:center;
+            margin:0 auto;
+            width: 910px;
+            border:none;
+        }
+        #forumBody table{
+            text-align: left;
+        }
     </style>
 </head>
 <body class="layui-layout-body">
@@ -86,9 +95,9 @@
         <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="newPost()">
             <i class="layui-icon">&#xe654;</i> 新建帖子
         </button>
-        <div style="text-align:center;margin:0 auto;width: 906px;">
-            <table class="layui-hide" id="test" lay-filter="test"></table>
-        </div>
+            <div id="forumBody">
+                <table class="layui-hide" id="test" lay-filter="test"></table>
+            </div>
         </div>
     </div>
 
@@ -177,6 +186,10 @@
             ,limits:[8,16,24,32,40]
             ,text: {
                 none: '论坛暂无帖子' //默认：无数据。注：该属性为 layui 2.2.5 开始新增
+            }
+            ,done: function (res, curr, count) {
+                $(".layui-table th").css("border", "none");
+                $(".layui-table td").css("border", "none");
             }
         });
 
