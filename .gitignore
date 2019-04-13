@@ -24,3 +24,5 @@ src/main/resources/application.properties
 /nbdist/
 /.nb-gradle/
 /build/
+src/main/resources/application.properties
+*.properties
