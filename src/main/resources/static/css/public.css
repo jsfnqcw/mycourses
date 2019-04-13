@@ -51,3 +51,14 @@ body {
   color: red;
   text-decoration: underline;
 }
+
+
+
+
+.rightButton{
+  float: right;
+}
+
+.forum{
+  background: #d1e9d2;
+}
