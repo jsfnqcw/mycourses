@@ -1,0 +1,13 @@
+.mainContainer {
+    width: 600px;
+    position: relative;
+    margin-left: 60px;
+}
+
+.mainContainer .title{
+    font-size: 30px;
+}
+
+.mainContainer .context{
+    font-size: 20px;
+}

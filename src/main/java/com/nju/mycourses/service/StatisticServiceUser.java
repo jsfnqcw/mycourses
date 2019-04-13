@@ -8,7 +8,6 @@ import com.nju.mycourses.StatisticObj.SelectItem;
 import com.nju.mycourses.entity.*;
 import com.nju.mycourses.enums.ScoreType;
 import com.nju.mycourses.enums.StType;
-import javafx.scene.input.DataFormat;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
