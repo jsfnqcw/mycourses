@@ -7,27 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Detailed Course(ST)</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
-    <style>
-        a.assignment {
-            font: 20px/1.5 arial, helvetica, sans-serif;
-            color: #0070a8;
-            transition: .5s;
-            cursor:pointer;
-            text-decoration: none;
-        }
-        a.assignment:visited {
-            color: #CCF;
-        }
-        a.assignment:hover {
-            color: lime;
-            background: #CFF;
-            text-decoration: underline;
-        }
-        a.assignment:active {
-            color: red;
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/public.css">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -82,16 +62,15 @@
     </div>
 
     <div class="layui-body">
+        <div class="mainContainer">
+
         <!-- 内容主体区域 -->
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <fieldset class="layui-elem-field layui-field-title title" >
             <legend>作业一览</legend>
         </fieldset>
-        <div class="layui-progress layui-progress-big">
-            <div class="layui-progress-bar" lay-percent="100%"></div>
-        </div>
-        <ul class="flow-default" id="demo">
-            <hr class="layui-bg-cyan">
-        </ul>
+
+        <ul class="flow-default" id="demo"></ul>
+      </div>
     </div>
 
     <div class="layui-footer">
@@ -169,7 +148,7 @@
                     layui.each(res.data, function(index, item){
                         lis.push(
                             '<i class="layui-icon" style="font-size: 20px; color: #7700FF ;">&#xe66e;</i> '+
-                            '<a class="assignment" href="javascript:void(0)" id="'+item.id+'" onclick="viewAssignment(this)">'+item.title+'</a>'+
+                            '<a class="mousePointWave context" href="javascript:void(0)" id="'+item.id+'" onclick="viewAssignment(this)">'+item.title+'</a>'+
                             '<hr class="layui-bg-cyan">'
                         );
                     });
