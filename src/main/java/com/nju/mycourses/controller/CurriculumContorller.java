@@ -62,10 +62,11 @@ public class CurriculumContorller {
         return "detailedTC/courseDetailTC";
     }
 
-    @GetMapping("/courseDetailST/overview/*")
-    public String courseDetailST(HttpServletRequest request, Model model) throws IOException {
+    @GetMapping("/courseDetailST/overview/{curriculumId}")
+    public String courseDetailST(HttpServletRequest request, Model model, @PathVariable Long curriculumId) throws IOException {
         String userName=CookieUtils.getCookieValue(request,"userName");
         model.addAttribute("userName",userName);
+        model.addAttribute("courseName",curriculumService.getCourseName(curriculumId));
         return "detailedST/courseDetailST";
     }
 
