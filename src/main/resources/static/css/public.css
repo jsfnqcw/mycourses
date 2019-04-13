@@ -1,5 +1,5 @@
 .mainContainer {
-    width: 600px;
+    width: 800px;
     position: relative;
     margin-left: 60px;
 }
@@ -11,6 +11,12 @@
 
 .mainContainer .context{
     font-size: 20px;
+}
+
+.card {
+  width: 600px;
+  position: relative;
+  margin:0px 48px 0px 48px;
 }
 
 body{
