@@ -7,27 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Detailed Course(TC)</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
-    <style>
-        a.courseware {
-            font: 20px/1.5 arial, helvetica, sans-serif;
-            color: #0070a8;
-            transition: .5s;
-            cursor:pointer;
-            text-decoration: none;
-        }
-        a.courseware:visited {
-            color: #CCF;
-        }
-        a.courseware:hover {
-            color: lime;
-            background: #CFF;
-            text-decoration: underline;
-        }
-        a.courseware:active {
-            color: red;
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/public.css">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -174,9 +154,9 @@
                     //假设你的列表返回在data集合中
                     layui.each(res.data, function(index, item){
                         lis.push(
-                            '<i class="layui-icon" style="font-size: 30px; color: #7700FF ;">&#xe621;</i> '+
-                            '<a class="courseware" href="'+item.hrefPath+'" download="'+item.fileName+'">'+item.fileName+'</a>'+
-                            '<hr class="layui-bg-cyan">'
+                          '<p><i class="layui-icon" style="font-size:20px; color: #7700FF ;">&#xe621;</i> ' +
+                          '<a class="mousePointWave" href="' + item.hrefPath + '" download="' + item.fileName + '">' + item.fileName + '</a></p>'
+
                             );
                     });
 
