@@ -4,15 +4,6 @@
   margin-left: 60px;
 }
 
-.mainContainer .title {
-  font-size: 30px;
-  margin-top: 40px;
-}
-
-.mainContainer .context {
-  font-size: 20px;
-}
-
 .listContext {
   font-size: 20px;
   line-height: 1.5em
@@ -27,6 +18,15 @@
 
 body {
   font-family: Microsoft YaHei;
+}
+
+.title {
+  font-size: 30px;
+  margin-top: 40px;
+}
+
+.context {
+  font-size: 20px;
 }
 
 .mousePointWave {
