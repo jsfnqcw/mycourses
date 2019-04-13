@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Detailed Course(TC)</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/public.css">
     <style>
         a.layui-table-link {
             color: #0070a8;
-            transition: .5s;
+            transition: .2s;
             cursor:pointer;
             text-decoration: none;
         }
@@ -18,9 +19,21 @@
             color: #CCF;
         }
         a.layui-table-link:hover {
-            color: lime;
+            color: #5585b5;
             background: #CFF;
             text-decoration: underline;
+        }
+        #forumBody{
+             text-align:center;
+             margin:0 auto;
+             width: 910px;
+             border:none;
+         }
+        #forumBody table{
+            border:0;
+            cellspacing:"0";
+            cellpadding:"0";
+            text-align: left;
         }
     </style>
 </head>
@@ -86,14 +99,18 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
+        <div class="mainContainer">
+
+
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
             <legend>论坛一览</legend>
         </fieldset>
-        <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="newPost()">
+        <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="newPost()" style="text-align:center">
             <i class="layui-icon">&#xe654;</i> 新建帖子
         </button>
-        <div style="text-align:center;margin:0 auto;width: 906px;">
+        <div id="forumBody">
             <table class="layui-hide" id="test" lay-filter="test"></table>
+        </div>
         </div>
     </div>
 
@@ -182,6 +199,10 @@
             ,limits:[8,16,24,32,40]
             ,text: {
                 none: '论坛暂无帖子' //默认：无数据。注：该属性为 layui 2.2.5 开始新增
+            }
+            ,done: function (res, curr, count) {
+                $(".layui-table th").css("border", "none");
+                $(".layui-table td").css("border", "none");
             }
         });
 
