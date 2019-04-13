@@ -1,44 +1,42 @@
 .mainContainer {
-    width: 800px;
-    position: relative;
-    margin-left: 60px;
+  width: 800px;
+  position: relative;
+  margin-left: 60px;
 }
 
-.mainContainer .title{
-    font-size: 30px;
-    margin-top: 40px;
+.mainContainer .title {
+  font-size: 30px;
+  margin-top: 40px;
 }
 
-.mainContainer .context{
-    font-size: 20px;
+.mainContainer .context {
+  font-size: 20px;
 }
 
 .card {
   width: 600px;
   position: relative;
-  margin:0px 48px 0px 48px;
+  margin: 0px 48px 0px 48px;
 }
 
-body{
-    font-family: Microsoft YaHei;
+body {
+  font-family: Microsoft YaHei;
 }
 
-
- .mousePointWave {
-
-  font: 20px/1.5 arial, helvetica, sans-serif;
+.mousePointWave {
   color: black;
   transition: .2s;
   cursor: pointer;
   text-decoration: none;
 }
- .mousePointWave:hover {
+
+.mousePointWave:hover {
   color: #5585b5;
   background: #CFF;
   text-decoration: underline;
 }
 
- .mousePointWave:active {
+.mousePointWave:active {
   color: red;
   text-decoration: underline;
 }
