@@ -1,5 +1,5 @@
 .mainContainer {
-  width: 800px;
+  width: 910px;
   position: relative;
   margin-left: 60px;
 }
@@ -13,11 +13,17 @@
   font-size: 20px;
 }
 
-.card {
-  width: 600px;
-  position: relative;
-  margin: 0px 48px 0px 48px;
+.listContext {
+  font-size: 20px;
+  line-height: 1.5em
 }
+
+.popWindowContainer{
+  width: 550px;
+  position: relative;
+  margin: 0px 40px 0px 40px;
+}
+
 
 body {
   font-family: Microsoft YaHei;
