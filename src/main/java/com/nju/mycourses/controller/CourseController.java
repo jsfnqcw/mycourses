@@ -3,6 +3,7 @@ package com.nju.mycourses.controller;
 import com.nju.mycourses.config.PathConfig;
 import com.nju.mycourses.service.CourseService;
 import com.nju.mycourses.POJO.Prompt;
+import com.nju.mycourses.service.CurriculumService;
 import com.nju.mycourses.util.FileUtil;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
 @Controller
 public class CourseController {
     @Autowired
     CourseService courseService;
+    @Autowired
+    CurriculumService curriculumService;
 
     @PostMapping("/createCourse")
     public void createCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -41,10 +45,10 @@ public class CourseController {
         String description=request.getParameter("desc");
 
         courseService.createCourse(userName,courseName,description);
-        String path= PathConfig.getCourseImgPath();
+        String path= PathConfig.getCourseImgPath()+courseService.getCourseId(userName,courseName)+'/';
         Prompt prompt;
         try {
-            FileUtil.uploadFile(coursePic,path, String.valueOf(courseService.getCourseId(userName,courseName)));
+            FileUtil.uploadFile(coursePic,path);
             prompt=new Prompt("Create course successfully!");
             response.setContentType("application/json; charset=UTF-8");
             response.getWriter().print(new JSONObject(prompt));
@@ -70,4 +74,19 @@ public class CourseController {
         response.getWriter().print(courseService.selectCourse(userName));
     }
 
+    @GetMapping("/getCourseImg")
+    public void getCourseImg(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String curriculumId=request.getParameter("curriculumId");
+        Long courseId=curriculumService.getCourseId(Long.valueOf(curriculumId));
+        File file=new File(PathConfig.getCourseImgPath()+courseId+'/');
+        Prompt prompt;
+        if(file.exists()){
+            prompt=new Prompt("/courseImg/"+courseId+'/'+file.list()[0]);
+        }
+        else{
+            prompt=new Prompt("/imgs/bookmark.png");
+        }
+        response.setContentType("application/json; charset=UTF-8");
+        response.getWriter().print(new JSONObject(prompt));
+    }
 }

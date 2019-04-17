@@ -314,6 +314,11 @@ public class CurriculumService {
         return courseRepository.findById(courseId).get().getCourseName();
     }
 
+    public Long getCourseId(Long curriculumId){
+        Long courseId=curriculumRepository.findById(curriculumId).get().getCourseId();
+        return courseId;
+    }
+
     public String getCoursewarePath(Long curriculumId){
         Long courseId=curriculumRepository.findById(curriculumId).get().getCourseId();
         return courseRepository.findById(courseId).get().getCourseware();

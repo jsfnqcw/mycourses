@@ -21,17 +21,4 @@ public class FileUtil {
         file.transferTo(dest);
     }
 
-    public static void uploadFile(MultipartFile file,String path,String fileName) throws IOException {
-        String originalName=file.getOriginalFilename();
-        String finalPath=path+fileName+originalName.substring(originalName.lastIndexOf('.'));
-        File dest=new File(finalPath);
-        if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
-            dest.getParentFile().mkdirs();
-        }
-        if(dest.exists()){
-            dest.delete();
-        }
-        dest.createNewFile();
-        file.transferTo(dest);
-    }
 }
