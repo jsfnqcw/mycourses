@@ -142,4 +142,10 @@ public class CourseService {
         Prompt prompt=new Prompt("Release post successfully!");
         return new JSONObject(prompt);
     }
+
+    public Long getCourseId(String userName,String courseName){
+        Long teacherId=userRepository.findByUserName(userName).getUserId();
+        Course course=courseRepository.findByTeacherIdAndCourseName(teacherId,courseName).get(0);
+        return course.getCourseId();
+    }
 }
