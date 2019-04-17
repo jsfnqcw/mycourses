@@ -29,19 +29,23 @@ body {
   font-size: 20px;
 }
 
+.imgWrap {
+  padding: 6px;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0px 0px 9px -1px rgba(0, 0, 0, 0.16);
+}
+
 .personal {
-  height: 120px;
+  height: 200px;
   width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: Center;
 }
-
-.imgWrap {
-  padding: 6px;
-  border: 1px solid #e1e1e1;
-  box-shadow: 0px 0px 9px -1px rgba(0, 0, 0, 0.16);
+.personal .imgWrap img{
+  width:184px;
+  height:184px;
 }
 
 .menuOpt {
