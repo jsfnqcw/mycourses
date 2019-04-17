@@ -1,0 +1,82 @@
+body {
+  font-family: Microsoft YaHei;
+}
+
+.header{
+  margin: 0px 100px 0px 100px;
+}
+.HeadBg{
+  background: #23262E;
+}
+
+.main{
+  overflow-y: scroll;
+  height: calc(100vh - 104px);
+  position: relative;
+}
+
+.side{
+  margin:0px 0px 0px 150px;
+  width:200px;
+  position: relative;
+  float: left;
+  padding-top: 30px;
+  text-align: center;
+}
+.side div{
+  font-size: 20px;
+}
+.personal{
+  height:120px;
+  width: 100%;
+  position: relative;
+
+  display: flex;
+  justify-content:center;
+  align-items:Center;
+}
+.imgWrap{
+  padding: 6px;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.16);
+}
+
+
+.menuOpt{
+  height:60px;
+  background: #FFFFFF;
+  position: relative;
+
+  color: #000000;
+
+  transition: .2s;
+  cursor: pointer;
+
+  display: flex;
+  justify-content:center;
+  align-items:Center;
+
+  padding: 6px;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.16);
+}
+.menuOpt:hover{
+  color:#009688;
+}
+.menuOpt i{
+  font-size: 24px;
+  margin-right:20px;
+}
+
+.body{
+  margin:0px 0px 0px 60px;
+  width: calc(100vw - 560px);
+  position: relative;
+  float: left;
+}
+
+
+
+.courseCard{
+  display:flex;
+}
