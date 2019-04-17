@@ -8,6 +8,7 @@ public class CourseCardST {
     private String semesterSeason;
     private String schedule;
     private String state;
+    private String courseImg;
 
     public CourseCardST(Long curriculumId, String courseName, String teacherName, String semesterYear, String semesterSeason, String schedule, String state) {
         this.curriculumId = curriculumId;
@@ -17,6 +18,7 @@ public class CourseCardST {
         this.semesterSeason = semesterSeason;
         this.schedule = schedule;
         this.state = state;
+        this.courseImg="/imgs/test.png";
     }
 
     public Long getCurriculumId() {
@@ -73,5 +75,13 @@ public class CourseCardST {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getCourseImg() {
+        return courseImg;
+    }
+
+    public void setCourseImg(String courseImg) {
+        this.courseImg = courseImg;
     }
 }

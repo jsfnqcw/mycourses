@@ -8,150 +8,185 @@
     <title>My Homepage</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
     <link rel="stylesheet" href="/layui/css/tableFilter.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <script src="js/sideMenu.js" charset="utf-8"></script>
 </head>
-<body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
-        <div class="layui-logo">My Course</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item">
-                <a href="javascript:void(0)">
-                    <img src="/cute-kitten-wallpaper-18701-wallpaperesque.jpg" class="layui-nav-img">
-                    <span th:text="${userName}"></span>
-                </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:void(0)" onclick='window.location.hash="#profile=1"; window.location.reload()'>个人信息</a></dd>
-                    <dd><a href="javascript:void(0)" onclick='window.location.hash="#profile=2"; window.location.reload()'>统计详情</a></dd>
-                    <dd><a href="javascript:void(0)" onclick='window.location.hash="#profile=3"; window.location.reload()'>修改密码</a></dd>
-                    <dd><a href="javascript:void(0)" onclick="cancel()">注销账号</a></dd>
-                    <dd><a href="javascript:void(0)" onclick="logout()">退出登录</a></dd>
-                </dl>
-            </li>
-        </ul>
-    </div>
 
-    <div class="layui-side">
-        <img src="/photos/sunset.jpg"  alt="" width="100%" height="100%">
-    </div>
-
-    <div class="layui-body">
-        <!-- 内容主体区域 -->
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-            <legend>My Course Profile</legend>
-        </fieldset>
-        <div class="layui-tab" lay-filter="profile">
-            <ul class="layui-tab-title">
-                <li class="layui-this" lay-id="1">个人信息</li>
-                <li lay-id="2">统计详情</li>
-                <li lay-id="3">修改密码</li>
+<body class="layui-bg-gray">
+<div class="layui-layout layui-layout-admin head">
+    <div class="HeadBg">
+        <div class="layui-header header">
+            <div class="layui-logo" style="font-size:24px;">My Course</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-right ">
+                <li class="layui-nav-item">
+                    <a href="javascript:void(0)">
+                        <img src="/cute-kitten-wallpaper-18701-wallpaperesque.jpg" class="layui-nav-img">
+                        <span th:text="${userName}"></span>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/profileST#profile=1">个人信息</a></dd>
+                        <dd><a href="/profileST#profile=2">统计详情</a></dd>
+                        <dd><a href="/profileST#profile=3">修改密码</a></dd>
+                        <dd><a href="javascript:void(0)" onclick="cancel()">注销账号</a></dd>
+                        <dd><a href="javascript:void(0)" onclick="logout()">退出登录</a></dd>
+                    </dl>
+                </li>
             </ul>
-            <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">
-                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-                        <legend>个人信息</legend>
-                    </fieldset>
-                    <form class="layui-form layui-form-pane" onsubmit="return false">
+        </div>
 
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">姓名</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="userName" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" th:value="${userName}">
-                            </div>
-                        </div>
-                        <div class="layui-form-item" style="display: none">
-                            <label class="layui-form-label">类型</label>
-                            <div class="layui-input-inline">
-                                <input type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" id="null" disabled="" th:value="${studentType}">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">类型</label>
-                            <div class="layui-input-inline">
-                                <select name="studentType" id="studentType">
-                                    <option value="Undergraduate" selected="">本科生</option>
-                                    <option value="Postgraduate">研究生</option>
-                                    <option value="Doctor">博士生</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">学号</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="studentId" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" th:value="${studentId}">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">邮箱</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="email" autocomplete="off" placeholder="" class="layui-input" disabled="" th:value="${email}">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <button class="layui-btn" onclick="changeInfo()">提交更改</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="layui-tab-item">
-                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-                        <legend>统计详情</legend>
-                    </fieldset>
-                    <div class="layui-tab layui-tab-card">
-                        <ul class="layui-tab-title">
-                            <li class="layui-this">选课/退课</li>
-                            <li>成绩详情</li>
-                        </ul>
-                        <div class="layui-tab-content">
-                            <div class="layui-tab-item layui-show">
-                                <table class="layui-hide" id="select" lay-filter="select"></table>
-                            </div>
-                            <div class="layui-tab-item">
-                                <table class="layui-hide" id="score" lay-filter="score"></table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="layui-tab-item">
-                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-                        <legend>修改密码</legend>
-                    </fieldset>
-                    <form class="layui-form layui-form-pane" id="resetP" onsubmit="return false">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">原密码</label>
-                            <div class="layui-input-inline">
-                                <input type="password" name="passwordO" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">新密码</label>
-                            <div class="layui-input-inline">
-                                <input type="password" name="passwordN" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">确认密码</label>
-                            <div class="layui-input-inline">
-                                <input type="password" name="passwordC" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-input-block">
-                                <button class="layui-btn" lay-filter="formDemo" onclick="resetPassword()">保存</button>
-                                <button type="reset" class="layui-btn layui-btn-primary" onclick="$('#resetP')[0].reset()">取消</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    </div>
+    <div class="layui-footer" style="left:0px; z-index:1000;">
+        <!-- 底部固定区域 -->
+        © My Course Copyright (c) 2018 Copyright Holder All Rights Reserved.
+    </div>
+</div>
+<div class="main">
+    <div class="side">
+        <div class="personal">
+            <div class="imgWrap">
+                <img src="imgs/bookmark.png" alt="">
+            </div>
+        </div><br>
+        <div  th:text="${userName}"></div>
+        <br><br>
+        <div class="sideMenu">
+            <div class="menuOpt" onclick="studentAllClass()">
+                <p><i class="layui-icon layui-icon-home"></i>
+                    我的课程</p>
+            </div>
+            <div class="menuOpt" onclick="studentChooseClass()">
+                <p><i class="layui-icon layui-icon-read"></i>
+                    选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;课</p>
+            </div>
+            <div class="menuOpt" onclick="studentMessage()">
+                <p><i class="layui-icon layui-icon-dialogue"></i>
+                    消&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;息</p>
+            </div>
+            <div class="menuOpt" onclick="studentSeettings()">
+                <p><i class="layui-icon layui-icon-set"></i>
+                    个人设置</p>
             </div>
         </div>
     </div>
 
-    <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        © My Course
+    <div class="body ">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+                <legend>My Course Profile</legend>
+            </fieldset>
+            <div class="layui-tab" lay-filter="profile">
+                <ul class="layui-tab-title">
+                    <li class="layui-this" lay-id="1">个人信息</li>
+                    <li lay-id="2">统计详情</li>
+                    <li lay-id="3">修改密码</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+                            <legend>个人信息</legend>
+                        </fieldset>
+                        <form class="layui-form layui-form-pane" onsubmit="return false">
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">姓名</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="userName" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" th:value="${userName}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item" style="display: none">
+                                <label class="layui-form-label">类型</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" id="null" disabled="" th:value="${studentType}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">类型</label>
+                                <div class="layui-input-inline">
+                                    <select name="studentType" id="studentType">
+                                        <option value="Undergraduate" selected="">本科生</option>
+                                        <option value="Postgraduate">研究生</option>
+                                        <option value="Doctor">博士生</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">学号</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="studentId" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" th:value="${studentId}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">邮箱</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="email" autocomplete="off" placeholder="" class="layui-input" disabled="" th:value="${email}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" onclick="changeInfo()">提交更改</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="layui-tab-item">
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+                            <legend>统计详情</legend>
+                        </fieldset>
+                        <div class="layui-tab layui-tab-card">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">选课/退课</li>
+                                <li>成绩详情</li>
+                            </ul>
+                            <div class="layui-tab-content">
+                                <div class="layui-tab-item layui-show">
+                                    <table class="layui-hide" id="select" lay-filter="select"></table>
+                                </div>
+                                <div class="layui-tab-item">
+                                    <table class="layui-hide" id="score" lay-filter="score"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-tab-item">
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+                            <legend>修改密码</legend>
+                        </fieldset>
+                        <form class="layui-form layui-form-pane" id="resetP" onsubmit="return false">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">原密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="passwordO" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">新密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="passwordN" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">确认密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="passwordC" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-filter="formDemo" onclick="resetPassword()">保存</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary" onclick="$('#resetP')[0].reset()">取消</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
+
+    <div class="bodyGround"></div>
 </div>
 
 <script src="/layui/layui.js"></script>
@@ -172,26 +207,6 @@
             location.hash = 'profile='+ $(this).attr('lay-id');
         });
 
-    });
-</script>
-
-<script>
-    layui.use('util', function(){
-        var util = layui.util;
-        //固定块
-        util.fixbar({
-            bar1: '&#xe68e;'
-            ,bar2: '&#xe705;'
-            ,css: {right: 50, bottom: 100}
-            ,bgcolor: '#393D49'
-            ,click: function(type){
-                if(type === 'bar1'){
-                    window.location.href='homepageST';
-                } else if(type === 'bar2') {
-                    window.location.href='electiveCurriculum';
-                }
-            }
-        });
     });
 </script>
 
@@ -328,11 +343,11 @@
             elem: '#select'
             ,url: '/getSelect' //数据接口
             ,toolbar: true
-            ,width: 1208
+            ,width: 885
             ,cols: [[ //表头
-                {field: 'courseName', title: '课程名称', width:160}
+                {field: 'courseName', title: '课程名称', width:120}
                 ,{field: 'semester', title: '开课学期', width:120}
-                ,{field: 'schedule', title: '课程课时', width: 500}
+                ,{field: 'schedule', title: '课程课时', width: 400}
                 ,{field: 'teacher', title: '任课教师', width: 120}
                 ,{field: 'result', title: '选课结果', width: 120}
             ]]
@@ -357,12 +372,12 @@
             elem: '#score'
             ,url: '/getScore' //数据接口
             ,toolbar: true
-            ,width: 1208
+            ,width: 886
             ,cols: [[ //表头
-                {field: 'courseName', title: '课程名称', width:160}
+                {field: 'courseName', title: '课程名称', width:120}
                 ,{field: 'semester', title: '开课学期', width:120}
                 ,{field: 'teacher', title: '任课教师', width: 120}
-                ,{field: 'title', title: '发布标题', width: 380}
+                ,{field: 'title', title: '发布标题', width: 280}
                 ,{field: 'method', title: '发布形式', width: 120}
                 ,{field: 'result', title: '个人成绩', width: 120, sort: true}
             ]]

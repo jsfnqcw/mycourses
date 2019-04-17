@@ -5,6 +5,7 @@ import com.nju.mycourses.POJO.CourseCardST;
 import com.nju.mycourses.POJO.CurriculumCardST;
 import com.nju.mycourses.POJO.CurriculumCardTC;
 import com.nju.mycourses.POJO.CurriculumSelectionItem;
+import com.nju.mycourses.config.PathConfig;
 import com.nju.mycourses.entity.CSelecRec;
 import com.nju.mycourses.entity.Course;
 import com.nju.mycourses.entity.Curriculum;
@@ -21,6 +22,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -231,6 +233,7 @@ public class CurriculumService {
             Long curriculumId=cSelecRec.getCurriculumId();
             Curriculum curriculum=curriculumRepository.findById(curriculumId).get();
             Course course=courseRepository.findById(curriculum.getCourseId()).get();
+
             String courseName=course.getCourseName();
             String teacherName=userRepository.findById(course.getTeacherId()).get().getUserName();
 
@@ -241,6 +244,11 @@ public class CurriculumService {
             String state="已开课";
 
             CourseCardST courseCardST=new CourseCardST(curriculumId,courseName,teacherName,curriculum.getSemesterYear()+"年 ",season,curriculum.getSchedule().replaceAll("\n","<br>"),state);
+            File file=new File(PathConfig.getCourseImgPath()+course.getCourseId()+'/');
+            if(file.exists()){
+                courseCardST.setCourseImg("/courseImg/"+course.getCourseId()+'/'+file.list()[0]);
+            }
+
             courseCardSTList.add(courseCardST);
         }
 

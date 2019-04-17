@@ -75,84 +75,6 @@
           <legend>学生 - 课程概况</legend>
         </fieldset>
 
-        <div class="courseCardCon" onclick="enter(this)">
-          <div class="imgWrap">
-            <img src="imgs/test.png" alt="">
-          </div>
-          <div class="courseCard">
-            <a href="javascript:void(0)" class="btn" onclick="withdrawal(this)">我要退课</a>
-            <p class="title">机器学习</p>
-            <p class="teacher">彭俊杰 教授</p>
-            <div class="courseLine">2019年春</div>
-            <p class="state">已经开课</p>
-          </div>
-        </div>
-
-        <div class="courseCardCon" onclick="enter(this)">
-          <div class="imgWrap">
-            <img src="imgs/test.png" alt="">
-          </div>
-          <div class="courseCard">
-            <a href="javascript:void(0)" class="btn" onclick="withdrawal(this)">我要退课</a>
-            <p class="title">机器学习</p>
-            <p class="teacher">彭俊杰 教授</p>
-            <div class="courseLine">2019年春</div>
-            <p class="state">已经开课</p>
-          </div>
-        </div>
-
-        <div class="courseCardCon" onclick="enter(this)">
-          <div class="imgWrap">
-            <img src="imgs/test.png" alt="">
-          </div>
-          <div class="courseCard">
-            <a href="javascript:void(0)" class="btn" onclick="withdrawal(this)">我要退课</a>
-            <p class="title">机器学习</p>
-            <p class="teacher">彭俊杰 教授</p>
-            <div class="courseLine">2019年春</div>
-            <p class="state">已经开课</p>
-          </div>
-        </div>
-
-        <div class="courseCardCon" onclick="enter(this)">
-          <div class="imgWrap">
-            <img src="imgs/test.png" alt="">
-          </div>
-          <div class="courseCard">
-            <a href="javascript:void(0)" class="btn" onclick="withdrawal(this)">我要退课</a>
-            <p class="title">机器学习</p>
-            <p class="teacher">彭俊杰 教授</p>
-            <div class="courseLine">2019年春</div>
-            <p class="state">已经开课</p>
-          </div>
-        </div>
-
-        <div class="courseCardCon" onclick="enter(this)">
-          <div class="imgWrap">
-            <img src="imgs/test.png" alt="">
-          </div>
-          <div class="courseCard">
-            <a href="javascript:void(0)" class="btn" onclick="withdrawal(this)">我要退课</a>
-            <p class="title">机器学习</p>
-            <p class="teacher">彭俊杰 教授</p>
-            <div class="courseLine">2019年春</div>
-            <p class="state">已经开课</p>
-          </div>
-        </div>
-
-        <div class="courseCardCon" onclick="enter(this)">
-          <div class="imgWrap">
-            <img src="imgs/test.png" alt="">
-          </div>
-          <div class="courseCard">
-            <a href="javascript:void(0)" class="btn" onclick="withdrawal(this)">我要退课</a>
-            <p class="title">机器学习</p>
-            <p class="teacher">彭俊杰 教授</p>
-            <div class="courseLine">2019年春</div>
-            <p class="state">已经开课</p>
-          </div>
-        </div>
-
         <ul class="flow-default" id="demo"></ul>
       </div>
     </div>
@@ -221,26 +143,17 @@
           //假设你的列表返回在data集合中
           layui.each(res.data, function(index, item) {
             lis.push(
-              '<div class="layui-card">\n' +
-              '  <div class="layui-card-header">' + '<strong>发布编号：</strong>' + item.curriculumId + '</div>\n' +
-              '  <div class="layui-card-body" id="' + item.curriculumId + '">\n' +
-              '    <hr class="layui-bg-blue">' +
-              '    <strong>课程名称：</strong>' + item.courseName + '<br>' +
-              '    <strong>教师名称：</strong>' + item.teacherName + '<br>' +
-              '    <strong>发布学期：</strong>' + item.semesterYear + item.semesterSeason + '<br>' +
-              '    <strong>发布班次：</strong><br>' + item.schedule + '<br>' +
-              '    <strong>课程状态：</strong>' + '<span>' + item.state + '</span>' + '<br>' +
-              '    <hr class="layui-bg-blue">' +
-              '  <button class="layui-btn layui-col-md-offset10" style="background:white">\n' +
-              '    <i class="layui-icon">&#xe64b;</i>\n' +
-              '  </button>\n' +
-              '  <button class="layui-btn layui-bg-blue" onclick="enter(this)">\n' +
-              '    <i class="layui-icon">&#xe609;</i>\n' +
-              '  </button>\n' +
-              '  <button class="layui-btn layui-btn-danger" onclick="withdrawal(this)">\n' +
-              '    <i class="layui-icon">&#xe640;</i>\n' +
-              '  </button>\n' +
-              '  </div>' +
+              '<div class="courseCardCon"  state="'+ item.state +'" id="'+item.curriculumId+'">\n' +
+              '          <div class="imgWrap">\n' +
+              '            <img src="' + item.courseImg + '" alt="" style="width:120px;height:120px;" onclick="enter(this)">\n' +
+              '          </div>\n' +
+              '          <div class="courseCard">\n' +
+              '            <a href="javascript:void(0)" class="btn" onclick="withdrawal(this)">退课</a>\n' +
+              '            <p class="title">' + item.courseName + '</p>\n' +
+              '            <p class="teacher">' + item.teacherName + '</p>\n' +
+              '            <div class="courseLine">' + item.semesterYear + item.semesterSeason + '</div>\n' +
+              '            <p class="state">' + item.state + '</p>\n' +
+              '          </div>\n' +
               '</div>');
           });
 
@@ -255,8 +168,8 @@
 
 <script>
   var enter = function(obj) {
-    var curriculumId = $(obj).parent().attr('id');
-    var state = $(obj).siblings('span').text();
+    var curriculumId = $(obj).parent().parent().attr('id');
+    var state = $(obj).parent().parent().attr('state');
     layui.use('layer', function() {
       var layer = layui.layer;
       if (state === "未开课") {
@@ -271,8 +184,8 @@
   };
 
   var withdrawal = function(obj) {
-    var curriculumId = $(obj).parent().attr('id');
-    var state = $(obj).siblings('span').text();
+    var curriculumId = $(obj).parent().parent().attr('id');
+    var state = $(obj).parent().parent().attr('state');
     layui.use('layer', function() {
       var layer = layui.layer;
       if (state === "已结课") {
