@@ -6,15 +6,19 @@
   <title>Detailed Course(TC)</title>
   <link rel="stylesheet" href="/layui/css/layui.css">
   <link rel="stylesheet" href="/css/public.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <script src="/js/loadCourseImg.js"></script>
 </head>
-<body class="layui-layout-body">
-  <div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
-      <div class="layui-logo" th:text="${courseName}"></div>
+
+<body class="layui-bg-gray" onload="loadCourseImg()">
+<div class="layui-layout layui-layout-admin head">
+  <div class="HeadBg">
+    <div class="layui-header header">
+      <div class="layui-logo" style="font-size:24px;">My Course</div>
       <!-- 头部区域（可配合layui已有的水平导航） -->
-      <ul class="layui-nav layui-layout-right">
+      <ul class="layui-nav layui-layout-right ">
         <li class="layui-nav-item">
-          <a href="javascript:;">
+          <a href="javascript:void(0)">
             <img src="/cute-kitten-wallpaper-18701-wallpaperesque.jpg" class="layui-nav-img">
             <span th:text="${userName}"></span>
           </a>
@@ -29,62 +33,70 @@
       </ul>
     </div>
 
-    <div class="layui-side layui-bg-black">
-      <div class="layui-side-scroll">
-        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-        <ul class="layui-nav layui-nav-tree" lay-filter="test">
-          <li class="layui-nav-item">
-            <a href="javascript:;">课件</a>
-            <dl class="layui-nav-child">
-              <dd><a href="javascript:;" onclick="window.location.href=window.location.href.replace('postView','coursewareDownload')">课件下载</a></dd>
-            </dl>
-          </li>
-          <li class="layui-nav-item">
-            <a href="javascript:;">作业</a>
-            <dl class="layui-nav-child">
-              <dd><a href="javascript:;" onclick="window.location.href=window.location.href.replace('postView','assignmentOverview')">作业提交</a></dd>
-            </dl>
-          </li>
-          <li class="layui-nav-item">
-            <a href="javascript:;">成绩</a>
-            <dl class="layui-nav-child">
-              <dd><a href="javascript:;" onclick="window.location.href=window.location.href.replace('postView','scoreOverview')">成绩查看</a></dd>
-            </dl>
-          </li>
-          <li class="layui-nav-item">
-            <a href="javascript:;" onclick="window.location.href=window.location.href.replace('postView','forumOverview')">论坛</a>
-          </li>
-        </ul>
+  </div>
+  <div class="layui-footer" style="left:0px; z-index:1000;">
+    <!-- 底部固定区域 -->
+    © My Course Copyright (c) 2018 Copyright Holder All Rights Reserved.
+  </div>
+</div>
+
+<div class="main">
+  <div class="side">
+    <div class="personal">
+      <div class="imgWrap">
+        <img id="imgWrap" alt="" style="width:186px;height:186px">
       </div>
-    </div>
-    <div class="layui-body">
-      <!-- 内容主体区域 -->
-      <div class="mainContainer">
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-          <legend>帖子详情</legend>
-        </fieldset>
-        <div style="padding: 15px;">
-          <ul class="flow-default" id="demo">
-            <div class="layui-card forum">
-              <div class="layui-card-header">
-                <strong th:text="${topic}"></strong>
-              </div>
-              <div class="layui-card-body">
-                <span th:utext="'由 <span style=\'color:#00F\'>'+${postUser}+'</span> 发表于 <span style=\'color:#060\'>'+${postTime}+'</span>'"></span><br>
-                <span th:utext="${description}"></span>
-                <a class="layui-icon rightButton" href="javascript:void(0)" onclick="replyPost()" style="font-size: 30px; color: #1E9FFF;">&#xe6b2;</a>
-              </div>
-            </div>
-            <br>
-          </ul>
-        </div>
+    </div><br>
+    <div  th:text="${courseName}"></div>
+    <br><br>
+    <div class="sideMenu">
+      <div class="menuOpt" onclick="window.location.href=window.location.href.replace('postView','coursewareDownload')">
+        <p><i class="layui-icon">&#xe621;</i>
+          课件下载
+        </p>
       </div>
-    </div>
-    <div class="layui-footer">
-      <!-- 底部固定区域 -->
-      © My Course
+      <div class="menuOpt" onclick="window.location.href=window.location.href.replace('postView','assignmentOverview')">
+        <p><i class="layui-icon">&#xe66e;</i>
+          作业提交
+        </p>
+      </div>
+      <div class="menuOpt" onclick="window.location.href=window.location.href.replace('postView','scoreOverview')">
+        <p><i class="layui-icon">&#xe63c;</i>
+          成绩查看
+        </p>
+      </div>
+      <div class="menuOpt" onclick="window.location.href=window.location.href.replace('postView','forumOverview')">
+        <p><i class="layui-icon layui-icon-set"></i>
+          论&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;坛</p>
+      </div>
     </div>
   </div>
+
+  <div class="body">
+    <!-- 内容主体区域 -->
+      <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>帖子详情</legend>
+      </fieldset>
+      <div style="padding: 15px;">
+        <ul class="flow-default" id="demo">
+          <div class="layui-card forum">
+            <div class="layui-card-header">
+              <strong th:text="${topic}"></strong>
+            </div>
+            <div class="layui-card-body">
+              <span th:utext="'由 <span style=\'color:#00F\'>'+${postUser}+'</span> 发表于 <span style=\'color:#060\'>'+${postTime}+'</span>'"></span><br>
+              <span th:utext="${description}"></span>
+              <a class="layui-icon rightButton" href="javascript:void(0)" onclick="replyPost()" style="font-size: 30px; color: #1E9FFF;">&#xe6b2;</a>
+            </div>
+          </div>
+          <br>
+        </ul>
+      </div>
+  </div>
+  <div class="bodyGround"></div>
+
+</div>
+
   <script src="/layui/layui.js"></script>
   <script src="/js.cookie.js"></script>
   <script src="/my-login-master/js/jquery.min.js"></script>
