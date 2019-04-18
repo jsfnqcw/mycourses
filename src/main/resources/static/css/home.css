@@ -106,6 +106,7 @@ body {
   transition: .2s;
   cursor: pointer;
 
+
   position: relative;
 }
 .courseCardCon:hover {
