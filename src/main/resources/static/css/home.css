@@ -103,23 +103,14 @@ body {
   display: flex;
   padding: 6px;
   margin-bottom: 10px;
-  transition: .2s;
-  cursor: pointer;
-
 
   position: relative;
 }
-.courseCardCon:hover {
-  animation:mymove 0.5s;
-}
-@keyframes mymove {
-    0%   {left:0px;}
-    50%  {left:20px;}
-    100% {left:0px;}
-}
+
 
 .courseCardCon .imgWrap {
   flex: none;
+  cursor: pointer;
 }
 .courseCard {
   flex:1;
