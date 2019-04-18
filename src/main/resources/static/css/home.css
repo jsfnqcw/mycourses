@@ -112,6 +112,9 @@ body {
   flex: none;
   cursor: pointer;
 }
+.courseCardCon .imgWrap img:hover{
+  opacity: 0.6;
+}
 .courseCard {
   flex:1;
   padding-left: 20px;
