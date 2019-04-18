@@ -2,6 +2,7 @@
   width: 910px;
   position: relative;
   margin-left: 60px;
+  overflow-x: auto;
 }
 
 .listContext {
