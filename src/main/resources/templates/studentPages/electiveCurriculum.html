@@ -75,24 +75,6 @@
           <legend>学生 - 课程选择</legend>
         </fieldset>
 
-        <div class="eleCourseCardCon">
-          <div class="courseCardCon">
-            <div class="imgWrap">
-              <img src="/imgs/test.png" alt="" style="width:120px;height:120px;" onclick="enter(this)">
-            </div>
-            <div class="courseCard">
-              <a href="javascript:void(0)" class="btn" onclick="withdrawal(this)">选课</a>
-              <p class="title">z</p>
-              <p class="teacher">HacoK</p>
-              <div class="courseLine">2019年 春</div>
-              <p class="state">已开课</p>
-            </div>
-          </div>
-          <div style="display:none">
-          </div>
-        </div>
-
-
         <ul class="flow-default" id="demo"></ul>
       </div>
     </div>
@@ -129,24 +111,18 @@
           //假设你的列表返回在data集合中
           layui.each(res.data, function(index, item) {
             lis.push(
-              '<div class="layui-card">\n' +
-              '  <div class="layui-card-header">' + '<strong>发布编号：</strong>' + item.curriculumId + '</div>\n' +
-              '  <div class="layui-card-body" id="' + item.curriculumId + '">\n' +
-              '    <hr class="layui-bg-blue">' +
-              '    <strong>课程名称：</strong>' + item.courseName + '<br>' +
-              '    <strong>教师名称：</strong>' + item.teacherName + '<br>' +
-              '    <strong>课程描述：</strong>' + item.description + '<br>' +
-              '    <strong>发布学期：</strong>' + item.semesterYear + item.semesterSeason + '<br>' +
-              '    <strong>发布班次：</strong><br>' + item.schedule + '<br>' +
-              '    <strong>限选人数：</strong>' + item.restriction + '<br>' +
-              '    <strong>已选人数：</strong>' + item.selected + '<br>' +
-              '    <strong>课程状态：</strong>' + item.state + '<br>' +
-              '    <hr class="layui-bg-blue">' +
-              '<button class="layui-btn layui-btn-primary layui-bg-blue layui-col-md-offset11" onclick="electiveCurriculum(this)">\n' +
-              '  <i class="layui-icon">&#x1005;</i>\n' +
-              '</button>' +
-              '  </div>' +
-              '</div>');
+                '<div class="courseCardCon"  state="'+ item.state +'" id="'+item.curriculumId+'">\n' +
+                '          <div class="imgWrap">\n' +
+                '            <img src="' + item.courseImg + '" alt="" style="width:120px;height:120px;">\n' +
+                '          </div>\n' +
+                '          <div class="courseCard">\n' +
+                '            <a href="javascript:void(0)" class="btn" onclick="electiveCurriculum(this)">选课</a>\n' +
+                '            <p class="title">' + item.courseName + '</p>\n' +
+                '            <p class="teacher">' + item.teacherName + '</p>\n' +
+                '            <div class="courseLine">' + item.semesterYear + item.semesterSeason + '</div>\n' +
+                '            <p class="state">课程人数：'+item.selected+' / '+item.restriction+'</p>\n' +
+                '          </div>\n' +
+                '</div>');
           });
 
           //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
@@ -195,7 +171,7 @@
 </script>
 <script>
   var electiveCurriculum = function(obj) {
-    var curriculumId = $(obj).parent().attr('id');
+    var curriculumId = $(obj).parent().parent().attr('id');
     layui.use('layer', function() {
       var layer = layui.layer;
       $.ajax({

@@ -157,6 +157,10 @@ public class CurriculumService {
 
             CurriculumCardST curriculumCardST =new CurriculumCardST(curriculum.getCurriculumId(),courseName,teacherName,course.getDescription().replaceAll("\n","<br>"),curriculum.getSemesterYear()+"年 ",season,curriculum.getSchedule().replaceAll("\n","<br>"),curriculum.getRestriction(),selected,state);
             resultList.add(curriculumCardST);
+            File file=new File(PathConfig.getCourseImgPath()+course.getCourseId()+'/');
+            if(file.exists()){
+                curriculumCardST.setCourseImg("/courseImg/"+course.getCourseId()+'/'+file.list()[0]);
+            }
             count++;
         }
 
@@ -185,8 +189,14 @@ public class CurriculumService {
                 season="秋";
 
             count++;
-
-            resultList.add(new CurriculumCardST(curriculum.getCurriculumId(),courseName,teacherName,course.getDescription().replaceAll("\n","<br>"),curriculum.getSemesterYear()+"年 ",season,curriculum.getSchedule().replaceAll("\n","<br>"),curriculum.getRestriction(),selected,state));
+            File file=new File(PathConfig.getCourseImgPath()+course.getCourseId()+'/');
+            String courseImg="";
+            if(file.exists()){
+                courseImg="/courseImg/"+course.getCourseId()+'/'+file.list()[0];
+            }
+            CurriculumCardST curriculumCardST=new CurriculumCardST(curriculum.getCurriculumId(),courseName,teacherName,course.getDescription().replaceAll("\n","<br>"),curriculum.getSemesterYear()+"年 ",season,curriculum.getSchedule().replaceAll("\n","<br>"),curriculum.getRestriction(),selected,state);
+            curriculumCardST.setCourseImg(courseImg);
+            resultList.add(curriculumCardST);
         }
 
         Integer pages=count/itemNum;

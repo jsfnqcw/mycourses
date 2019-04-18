@@ -11,6 +11,7 @@ public class CurriculumCardST {
     private Integer restriction;
     private Integer selected;
     private String state;
+    private String courseImg;
 
     public CurriculumCardST(Long curriculumId, String courseName, String teacherName, String description, String semesterYear, String semesterSeason, String schedule, Integer restriction, Integer selected, String state) {
         this.curriculumId = curriculumId;
@@ -23,6 +24,7 @@ public class CurriculumCardST {
         this.restriction = restriction;
         this.selected = selected;
         this.state = state;
+        this.courseImg="/imgs/test.png";
     }
 
     public Long getCurriculumId() {
@@ -103,5 +105,13 @@ public class CurriculumCardST {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getCourseImg() {
+        return courseImg;
+    }
+
+    public void setCourseImg(String courseImg) {
+        this.courseImg = courseImg;
     }
 }
