@@ -5,12 +5,14 @@ public class CourseCardTC {
     private String courseName;
     private String description;
     private String state;
+    private String courseImg;
 
     public CourseCardTC(Long courseId, String courseName, String description, String state) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.description = description;
         this.state = state;
+        this.courseImg="/imgs/test.png";
     }
 
     public Long getCourseId() {
@@ -43,5 +45,13 @@ public class CourseCardTC {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getCourseImg() {
+        return courseImg;
+    }
+
+    public void setCourseImg(String courseImg) {
+        this.courseImg = courseImg;
     }
 }

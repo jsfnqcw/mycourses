@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.beans.Transient;
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -78,6 +79,10 @@ public class CourseService {
             else
                 state="已否决";
             CourseCardTC courseCardTC =new CourseCardTC(course.getCourseId(),course.getCourseName(),course.getDescription().replaceAll("\n","<br>"),state);
+            File file=new File(PathConfig.getCourseImgPath()+course.getCourseId()+'/');
+            if(file.exists()){
+                courseCardTC.setCourseImg("/courseImg/"+course.getCourseId()+'/'+file.list()[0]);
+            }
             resultList.add(courseCardTC);
         }
         JSONObject result=new JSONObject();

@@ -97,6 +97,10 @@ public class CurriculumService {
                 state="已否决";
 
             CurriculumCardTC curriculumCardTC =new CurriculumCardTC(cid,courseName,curriculum.getSemesterYear()+"年 ",season,curriculum.getSchedule().replaceAll("\n","<br>"),curriculum.getRestriction(),selected,state);
+            File file=new File(PathConfig.getCourseImgPath()+course.getCourseId()+'/');
+            if(file.exists()){
+                curriculumCardTC.setCourseImg("/courseImg/"+course.getCourseId()+'/'+file.list()[0]);
+            }
             resultList.add(curriculumCardTC);
         }
 
@@ -240,11 +244,11 @@ public class CurriculumService {
             String season=(curriculum.getSemesterSeason().equals("spring"))?"春":"秋";
             if(curriculum.getApproved()==2)
                 continue;
-
+            File file=new File(PathConfig.getCourseImgPath()+course.getCourseId()+'/');
             String state="已开课";
 
             CourseCardST courseCardST=new CourseCardST(curriculumId,courseName,teacherName,curriculum.getSemesterYear()+"年 ",season,curriculum.getSchedule().replaceAll("\n","<br>"),state);
-            File file=new File(PathConfig.getCourseImgPath()+course.getCourseId()+'/');
+
             if(file.exists()){
                 courseCardST.setCourseImg("/courseImg/"+course.getCourseId()+'/'+file.list()[0]);
             }
@@ -266,8 +270,12 @@ public class CurriculumService {
             String courseName=course.getCourseName();
             String teacherName=userRepository.findById(course.getTeacherId()).get().getUserName();
 
+            File file=new File(PathConfig.getCourseImgPath()+course.getCourseId()+'/');
             CourseCardST courseCardST=new CourseCardST(curriculumId,courseName,teacherName,curriculum.getSemesterYear()+"年 ",season,curriculum.getSchedule().replaceAll("\n","<br>"),state);
 
+            if(file.exists()){
+                courseCardST.setCourseImg("/courseImg/"+course.getCourseId()+'/'+file.list()[0]);
+            }
             courseCardSTList.add(courseCardST);
         }
 
@@ -286,9 +294,13 @@ public class CurriculumService {
             Course course=courseRepository.findById(curriculum.getCourseId()).get();
             String courseName=course.getCourseName();
             String teacherName=userRepository.findById(course.getTeacherId()).get().getUserName();
+            File file=new File(PathConfig.getCourseImgPath()+course.getCourseId()+'/');
             String state="已结课";
 
             CourseCardST courseCardST=new CourseCardST(curriculumId,courseName,teacherName,curriculum.getSemesterYear()+"年 ",season,curriculum.getSchedule().replaceAll("\n","<br>"),state);
+            if(file.exists()){
+                courseCardST.setCourseImg("/courseImg/"+course.getCourseId()+'/'+file.list()[0]);
+            }
             courseCardSTList.add(courseCardST);
         }
 
