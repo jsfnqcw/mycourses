@@ -86,14 +86,28 @@
 
 
 <script src="/layui/layui.js"></script>
+<script src="/layui/layui.all.js"></script>
 <script src="/js.cookie.js"></script>
 <script src="/my-login-master/js/jquery.min.js"></script>
 
 <script>
   //JavaScript代码区域
-  layui.use('element', function() {
-    var element = layui.element;
-  });
+  function tip(obj){
+      var layer = layui.layer;
+      var tipClass = $(obj).attr("class");
+      var msg = $(obj).siblings("span").text().replace(/节周/g,"节<br>周");
+      var tipId = $(obj).attr("id");
+      if (tipClass == "noTip") {
+        $(obj).removeClass().addClass("onTip");
+        layer.tips(msg, "#" + tipId, {
+          tips: ['2', '#000000'],
+          time: 0
+        });
+      } else {
+        $(obj).removeClass().addClass("noTip");
+        layer.closeAll();
+      }
+  };
 </script>
 
 
@@ -113,7 +127,8 @@
             lis.push(
                 '<div class="courseCardCon"  state="'+ item.state +'" id="'+item.curriculumId+'">\n' +
                 '          <div class="imgWrap">\n' +
-                '            <img src="' + item.courseImg + '" alt="" style="width:120px;height:120px;">\n' +
+                '            <img src="' + item.courseImg + '" alt="" style="width:120px;height:120px;" class="noTip" onclick="tip(this)" id="img_'+item.curriculumId+'">\n' +
+                '            <span style="display: none">'+item.schedule+'</span>' +
                 '          </div>\n' +
                 '          <div class="courseCard">\n' +
                 '            <a href="javascript:void(0)" class="btn" onclick="electiveCurriculum(this)">选课</a>\n' +
