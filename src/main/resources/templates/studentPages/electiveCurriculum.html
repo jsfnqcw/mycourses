@@ -104,7 +104,10 @@
           time: 0
         });
       } else {
-        $(obj).removeClass().addClass("noTip");
+        var arrUl = $(".courseCardCon img")
+        $.each(arrUl, function(){
+          $(this).removeClass().addClass("noTip");
+        });
         layer.closeAll();
       }
   };
